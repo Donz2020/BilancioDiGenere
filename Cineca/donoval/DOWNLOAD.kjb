@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>DOWNLOAD</name>
   <description/>
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>/public/Project-group/donoval</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2013/06/28 22:06:14.777</created_date>
   <modified_user>donoval</modified_user>
@@ -17,12 +18,12 @@
     </parameter>
     <parameter>
       <name>HTM_TO_XLSX_SCRIPT</name>
-      <default_value>C:\Users\Sviluppo-pc\htm_to_xlsx.py</default_value>
+      <default_value>C:\Users\dony9\htm_to_xlsx.py</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>PATH</name>
-      <default_value>C:\Users\Sviluppo-pc\</default_value>
+      <default_value>C:\Users\dony9\</default_value>
       <description/>
     </parameter>
     <parameter>
@@ -32,6 +33,19 @@
     </parameter>
   </parameters>
   <slaveservers>
+    <slaveserver>
+      <name>ati-dev-ana01</name>
+      <hostname>ati-dev-ana01</hostname>
+      <port>9081</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>njain</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
     <slaveserver>
       <name>ATI-PRD-ANA03</name>
       <hostname>ATI-PRD-ANA03</hostname>
@@ -56,6 +70,19 @@
       <proxy_port/>
       <non_proxy_hosts/>
       <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>cptlx007</name>
+      <hostname>cptlx007.cipal.be</hostname>
+      <port>10001</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
       <sslMode>N</sslMode>
     </slaveserver>
     <slaveserver>
@@ -85,12 +112,38 @@
       <sslMode>N</sslMode>
     </slaveserver>
     <slaveserver>
+      <name>local</name>
+      <hostname>127.0.0.1</hostname>
+      <port>9080</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
       <name>master</name>
       <hostname>oathena.cipal.be</hostname>
       <port>10001</port>
       <webAppName/>
       <username>cluster</username>
       <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>remote</name>
+      <hostname>192.168.1.16</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di/kettle</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
       <proxy_hostname/>
       <proxy_port/>
       <non_proxy_hosts/>
@@ -160,58 +213,6 @@
       <proxy_port/>
       <non_proxy_hosts/>
       <master>N</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>ati-dev-ana01</name>
-      <hostname>ati-dev-ana01</hostname>
-      <port>9081</port>
-      <webAppName>pentaho-di</webAppName>
-      <username>njain</username>
-      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>cptlx007</name>
-      <hostname>cptlx007.cipal.be</hostname>
-      <port>10001</port>
-      <webAppName/>
-      <username>cluster</username>
-      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>local</name>
-      <hostname>127.0.0.1</hostname>
-      <port>9080</port>
-      <webAppName/>
-      <username>cluster</username>
-      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>remote</name>
-      <hostname>192.168.1.16</hostname>
-      <port>9080</port>
-      <webAppName>pentaho-di/kettle</webAppName>
-      <username>admin</username>
-      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
       <sslMode>N</sslMode>
     </slaveserver>
   </slaveservers>
@@ -561,7 +562,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>432</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -573,20 +574,19 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
+      <xloc>1040</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Read excel</name>
+      <name>read_excel</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>rep_name</specification_method>
+      <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
-      <transname>Read_excel</transname>
-      <directory>${Internal.Entry.Current.Directory}</directory>
+      <filename>${Internal.Entry.Current.Directory}/read_excel_to_db.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -613,8 +613,21 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>624</xloc>
+      <xloc>688</xloc>
       <yloc>96</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Interrompi job</name>
+      <description/>
+      <type>ABORT</type>
+      <attributes/>
+      <message/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -638,8 +651,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>python</from>
-      <to>Read excel</to>
+      <from>read_excel</from>
+      <to>Successo</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -647,12 +660,21 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Read excel</from>
-      <to>Successo</to>
+      <from>python</from>
+      <to>read_excel</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>read_excel</from>
+      <to>Interrompi job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

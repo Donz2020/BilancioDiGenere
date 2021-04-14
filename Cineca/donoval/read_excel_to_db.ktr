@@ -737,11 +737,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge rows (diff)</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Unique rows</to>
       <enabled>Y</enabled>
@@ -773,7 +768,17 @@
     </hop>
     <hop>
       <from>Unique rows</from>
+      <to>Generate random value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Generate random value</from>
       <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge rows (diff)</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -808,7 +813,7 @@
       <value>Struttura di afferenza</value>
       <value>Servizio prestato in altro ateneo</value>
     </values>
-    <flag_field>id</flag_field>
+    <flag_field>Cognome e Nome</flag_field>
     <reference>Unique rows 2</reference>
     <compare>Unique rows 3</compare>
     <compare>
@@ -1030,32 +1035,7 @@ FROM pentaho.ricercadocenti
     <row-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Fascia</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Fascia</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Fascia</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1078,32 +1058,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Cognome e Nome</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Cognome e Nome</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Cognome e Nome</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1126,32 +1081,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Genere</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Genere</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Genere</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1174,32 +1104,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Facoltà</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Facoltà</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Facoltà</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1222,32 +1127,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>S.S.D.</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>S.S.D.</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>S.S.D.</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1270,32 +1150,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>S.C.</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>S.C.</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>S.C.</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1318,32 +1173,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Struttura di afferenza</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Struttura di afferenza</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Struttura di afferenza</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1366,32 +1196,7 @@ FROM pentaho.ricercadocenti
       </value-meta>
       <value-meta>
         <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>Servizio prestato in altro ateneo</name>
-            <length>63</length>
-            <precision>-1</precision>
-            <origin>Table input</origin>
-            <comments>Servizio prestato in altro ateneo</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>it_IT</date_format_locale>
-            <date_format_timezone>Europe/Berlin</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
+        <storagetype>normal</storagetype>
         <name>Servizio prestato in altro ateneo</name>
         <length>63</length>
         <precision>-1</precision>
@@ -1444,7 +1249,7 @@ FROM pentaho.ricercadocenti
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
@@ -1453,8 +1258,8 @@ FROM pentaho.ricercadocenti
     <tablename_in_field>N</tablename_in_field>
     <tablename_field/>
     <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <return_keys>Y</return_keys>
+    <return_field>ID</return_field>
     <fields>
       <field>
         <column_name>Fascia</column_name>
@@ -1498,7 +1303,7 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
+      <xloc>1072</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1747,10 +1552,6 @@ FROM pentaho.ricercadocenti
         <name>Servizio prestato in altro ateneo</name>
         <case_insensitive>N</case_insensitive>
       </field>
-      <field>
-        <name>id</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1761,7 +1562,7 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>768</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1783,7 +1584,7 @@ FROM pentaho.ricercadocenti
     <free_memory/>
     <compress>N</compress>
     <compress_variable/>
-    <unique_rows>N</unique_rows>
+    <unique_rows>Y</unique_rows>
     <fields>
       <field>
         <name>Fascia</name>
@@ -1859,7 +1660,7 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>624</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1987,6 +1788,37 @@ FROM pentaho.ricercadocenti
     <GUI>
       <xloc>320</xloc>
       <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Generate random value</name>
+    <type>RandomValue</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID</name>
+        <type>random uuid</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

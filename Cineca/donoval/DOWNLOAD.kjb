@@ -579,13 +579,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>read_excel</name>
+      <name>cineca_export_db</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/read_excel_to_db.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/cineca_export_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -651,7 +651,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>read_excel</from>
+      <from>cineca_export_db</from>
       <to>Successo</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -661,7 +661,7 @@
     </hop>
     <hop>
       <from>python</from>
-      <to>read_excel</to>
+      <to>cineca_export_db</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -669,7 +669,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>read_excel</from>
+      <from>cineca_export_db</from>
       <to>Interrompi job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

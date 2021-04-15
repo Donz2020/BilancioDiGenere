@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Read_excel</name>
+    <name>cineca_export_db</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -740,28 +740,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 2</from>
+      <from>Unique rows 3</from>
       <to>Merge rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 3</from>
+      <from>source 2</from>
+      <to>Unique rows 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows 2</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
       <to>Merge rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Merge rows (diff)</from>
       <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>source 2</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Unique rows 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -783,26 +783,26 @@
     </partitioning>
     <keys>
       <key>Fascia</key>
-      <key>Cognome e Nome</key>
+      <key>Cognome_e_Nome</key>
       <key>Genere</key>
-      <key>Facoltà</key>
+      <key>Facolta</key>
       <key>S.S.D.</key>
       <key>S.C.</key>
-      <key>Struttura di afferenza</key>
-      <key>Servizio prestato in altro ateneo</key>
+      <key>Struttura_di_afferenza</key>
+      <key>Servizio_prestato_in_altro_ateneo</key>
     </keys>
     <values>
       <value>Fascia</value>
-      <value>Cognome e Nome</value>
+      <value>Cognome_e_Nome</value>
       <value>Genere</value>
-      <value>Facoltà</value>
+      <value>Facolta</value>
       <value>S.S.D.</value>
       <value>S.C.</value>
-      <value>Struttura di afferenza</value>
-      <value>Servizio prestato in altro ateneo</value>
+      <value>Struttura_di_afferenza</value>
+      <value>Servizio_prestato_in_altro_ateneo</value>
     </values>
-    <flag_field>Cognome e Nome</flag_field>
-    <reference>Unique rows 2</reference>
+    <flag_field>isChanged</flag_field>
+    <reference>Select values</reference>
     <compare>Unique rows 3</compare>
     <compare>
     </compare>
@@ -815,7 +815,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
+      <xloc>576</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -992,37 +992,6 @@
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>UUID</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Sort rows</name>
     <type>SortRows</type>
     <description/>
@@ -1050,7 +1019,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1066,7 +1035,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1090,7 +1059,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1098,7 +1067,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1115,7 +1084,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>720</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1133,15 +1102,14 @@
     </partitioning>
     <connection>ms sql server</connection>
     <sql>SELECT
-  UUID,
 Fascia
-, "Cognome e Nome"
+, "Cognome_e_Nome"
 , Genere
-, Facoltà
+, Facolta
 , "S.S.D."
 , "S.C."
-, "Struttura di afferenza"
-, "Servizio prestato in altro ateneo"
+, "Struttura_di_afferenza"
+, "Servizio_prestato_in_altro_ateneo"
 FROM dbo.ricercadocenti
 </sql>
     <limit>0</limit>
@@ -1154,31 +1122,8 @@ FROM dbo.ricercadocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>UUID</name>
-        <length>36</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>UUID</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Rome</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>Fascia</name>
-        <length>50</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>Fascia</comments>
@@ -1200,11 +1145,11 @@ FROM dbo.ricercadocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Cognome e Nome</comments>
+        <comments>Cognome_e_Nome</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1246,11 +1191,11 @@ FROM dbo.ricercadocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Facoltà</comments>
+        <comments>Facolta</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1315,11 +1260,11 @@ FROM dbo.ricercadocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <length>100</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Struttura di afferenza</comments>
+        <comments>Struttura_di_afferenza</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1338,11 +1283,11 @@ FROM dbo.ricercadocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Servizio prestato in altro ateneo</comments>
+        <comments>Servizio_prestato_in_altro_ateneo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1388,7 +1333,7 @@ FROM dbo.ricercadocenti
     <schema>dbo</schema>
     <table>ricercadocenti</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>
@@ -1399,24 +1344,24 @@ FROM dbo.ricercadocenti
     <tablename_in_field>N</tablename_in_field>
     <tablename_field/>
     <tablename_in_table>Y</tablename_in_table>
-    <return_keys>Y</return_keys>
-    <return_field>ID</return_field>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
         <column_name>Fascia</column_name>
         <stream_name>Fascia</stream_name>
       </field>
       <field>
-        <column_name>Cognome e Nome</column_name>
-        <stream_name>Cognome e Nome</stream_name>
+        <column_name>Cognome_e_Nome</column_name>
+        <stream_name>Cognome_e_Nome</stream_name>
       </field>
       <field>
         <column_name>Genere</column_name>
         <stream_name>Genere</stream_name>
       </field>
       <field>
-        <column_name>Facoltà</column_name>
-        <stream_name>Facoltà</stream_name>
+        <column_name>Facolta</column_name>
+        <stream_name>Facolta</stream_name>
       </field>
       <field>
         <column_name>S.S.D.</column_name>
@@ -1427,12 +1372,12 @@ FROM dbo.ricercadocenti
         <stream_name>S.C.</stream_name>
       </field>
       <field>
-        <column_name>Struttura di afferenza</column_name>
-        <stream_name>Struttura di afferenza</stream_name>
+        <column_name>Struttura_di_afferenza</column_name>
+        <stream_name>Struttura_di_afferenza</stream_name>
       </field>
       <field>
-        <column_name>Servizio prestato in altro ateneo</column_name>
-        <stream_name>Servizio prestato in altro ateneo</stream_name>
+        <column_name>Servizio_prestato_in_altro_ateneo</column_name>
+        <stream_name>Servizio_prestato_in_altro_ateneo</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1444,7 +1389,7 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1088</xloc>
+      <xloc>1312</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1470,7 +1415,7 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1478,7 +1423,7 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1490,11 +1435,11 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1507,7 +1452,7 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
+      <xloc>912</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1596,7 +1541,7 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1604,7 +1549,7 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1616,11 +1561,11 @@ FROM dbo.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1633,7 +1578,7 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
+      <xloc>448</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1764,7 +1709,7 @@ FROM dbo.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1780,7 +1725,7 @@ FROM dbo.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1804,7 +1749,7 @@ FROM dbo.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1812,7 +1757,7 @@ FROM dbo.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1831,6 +1776,170 @@ FROM dbo.ricercadocenti
     <GUI>
       <xloc>192</xloc>
       <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>Fascia</name>
+        <rename>Fascia</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Cognome e Nome</name>
+        <rename>Cognome_e_Nome</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Genere</name>
+        <rename>Genere</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Facoltà</name>
+        <rename>Facolta</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>S.S.D.</name>
+        <rename>S.S.D.</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>S.C.</name>
+        <rename>S.C.</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Struttura di afferenza</name>
+        <rename>Struttura_di_afferenza</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Servizio prestato in altro ateneo</name>
+        <rename>Servizio_prestato_in_altro_ateneo</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -815,8 +815,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>176</yloc>
+      <xloc>512</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1115,8 +1115,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>176</yloc>
+      <xloc>672</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1444,8 +1444,8 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>176</yloc>
+      <xloc>1088</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1507,8 +1507,8 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>176</yloc>
+      <xloc>848</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

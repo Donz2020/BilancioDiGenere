@@ -20,6 +20,8 @@
 
 
 
-  delete from ricercadocenti where Facoltà = NULL;
+  delete from ricercadocenti where Facolta IS NULL;
 
   select * from dbo.ricercadocenti;
+
+  truncate table ricercadocenti;

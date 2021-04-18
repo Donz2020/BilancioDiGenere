@@ -766,7 +766,17 @@
     </hop>
     <hop>
       <from>Unique rows</from>
+      <to>Insert / update</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert / update</from>
       <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table output</from>
+      <to>Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1332,7 +1342,7 @@ FROM dbo.ricercadocenti
     <connection>ms sql server</connection>
     <schema>dbo</schema>
     <table>ricercadocenti</table>
-    <commit>1000</commit>
+    <commit>10000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>N</use_batch>
@@ -1389,7 +1399,7 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1312</xloc>
+      <xloc>1248</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1578,7 +1588,7 @@ FROM dbo.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>432</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1795,7 +1805,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Fascia</name>
         <rename>Fascia</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1812,7 +1822,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Cognome e Nome</name>
         <rename>Cognome_e_Nome</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1829,7 +1839,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Genere</name>
         <rename>Genere</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1846,7 +1856,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Facoltà</name>
         <rename>Facolta</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1863,7 +1873,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>S.S.D.</name>
         <rename>S.S.D.</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1880,7 +1890,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>S.C.</name>
         <rename>S.C.</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1897,7 +1907,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Struttura di afferenza</name>
         <rename>Struttura_di_afferenza</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1914,7 +1924,7 @@ FROM dbo.ricercadocenti
       <meta>
         <name>Servizio prestato in altro ateneo</name>
         <rename>Servizio_prestato_in_altro_ateneo</rename>
-        <type>None</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1940,6 +1950,320 @@ FROM dbo.ricercadocenti
     <GUI>
       <xloc>432</xloc>
       <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Delete</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ms sql server</connection>
+    <commit>10000</commit>
+    <lookup>
+      <schema>dbo</schema>
+      <table>ricercadocenti</table>
+      <key>
+        <name>Fascia</name>
+        <field>Fascia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Cognome_e_Nome</name>
+        <field>Cognome_e_Nome</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Genere</name>
+        <field>Genere</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Facolta</name>
+        <field>Facolta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.S.D.</name>
+        <field>S.S.D.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.C.</name>
+        <field>S.C.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Struttura_di_afferenza</name>
+        <field>Struttura_di_afferenza</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <field>Servizio_prestato_in_altro_ateneo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1136</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ms sql server</connection>
+    <commit>10000</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>dbo</schema>
+      <table>ricercadocenti</table>
+      <key>
+        <name>Fascia</name>
+        <field>Fascia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Cognome_e_Nome</name>
+        <field>Cognome_e_Nome</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Genere</name>
+        <field>Genere</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Facolta</name>
+        <field>Facolta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.S.D.</name>
+        <field>S.S.D.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.C.</name>
+        <field>S.C.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Struttura_di_afferenza</name>
+        <field>Struttura_di_afferenza</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <field>Servizio_prestato_in_altro_ateneo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>Fascia</name>
+        <rename>Fascia</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Cognome_e_Nome</name>
+        <rename>Cognome_e_Nome</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Genere</name>
+        <rename>Genere</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Facolta</name>
+        <rename>Facolta</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>S.S.D.</name>
+        <rename>S.S.D.</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>S.C.</name>
+        <rename>S.C.</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Struttura_di_afferenza</name>
+        <rename>Struttura_di_afferenza</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <rename>Servizio_prestato_in_altro_ateneo</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Update</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ms sql server</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>10000</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema>dbo</schema>
+      <table>ricercadocenti</table>
+      <key>
+        <name>Fascia</name>
+        <field>Fascia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Cognome_e_Nome</name>
+        <field>Cognome_e_Nome</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Genere</name>
+        <field>Genere</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Facolta</name>
+        <field>Facolta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.S.D.</name>
+        <field>S.S.D.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.C.</name>
+        <field>S.C.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Struttura_di_afferenza</name>
+        <field>Struttura_di_afferenza</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <field>Servizio_prestato_in_altro_ateneo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>Fascia</name>
+        <rename>Fascia</rename>
+      </value>
+      <value>
+        <name>Cognome_e_Nome</name>
+        <rename>Cognome_e_Nome</rename>
+      </value>
+      <value>
+        <name>Genere</name>
+        <rename>Genere</rename>
+      </value>
+      <value>
+        <name>Facolta</name>
+        <rename>Facolta</rename>
+      </value>
+      <value>
+        <name>S.S.D.</name>
+        <rename>S.S.D.</rename>
+      </value>
+      <value>
+        <name>S.C.</name>
+        <rename>S.C.</rename>
+      </value>
+      <value>
+        <name>Struttura_di_afferenza</name>
+        <rename>Struttura_di_afferenza</rename>
+      </value>
+      <value>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <rename>Servizio_prestato_in_altro_ateneo</rename>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

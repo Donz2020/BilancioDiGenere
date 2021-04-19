@@ -1003,7 +1003,7 @@
     <name>Merge rows (diff)</name>
     <type>MergeRows</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>

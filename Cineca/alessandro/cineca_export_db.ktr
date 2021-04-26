@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Read_excel</name>
+    <name>cineca_export_db</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -16,7 +16,7 @@
       </parameter>
       <parameter>
         <name>PATH</name>
-        <default_value>C:\Users\dony9\</default_value>
+        <default_value>C:\Users\ale11\</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -664,14 +664,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>mysql pentaho</name>
+    <name>ms sql server</name>
     <server>naschristian.ddns.net</server>
-    <type>MYSQL</type>
+    <type>MSSQL</type>
     <access>Native</access>
     <database>pentaho</database>
-    <port>3306</port>
-    <username>admin</username>
-    <password>Encrypted 2be98af8902c99d8abb16bd63d1c6f694</password>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2bed1c0bb05c99d88ae1ea975d096ae8b</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -685,16 +685,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>INITIAL_POOL_SIZE</code>
-        <attribute>5</attribute>
-      </attribute>
-      <attribute>
         <code>IS_CLUSTERED</code>
         <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>MAXIMUM_POOL_SIZE</code>
-        <attribute>10</attribute>
       </attribute>
       <attribute>
         <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
@@ -702,7 +694,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
+        <attribute>1433</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -711,10 +703,6 @@
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
         <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
@@ -752,7 +740,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 2</from>
+      <from>Unique rows 3</from>
       <to>Merge rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
@@ -762,18 +750,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 3</from>
+      <from>Unique rows 2</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
       <to>Merge rows (diff)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
-      <to>Generate random value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Generate random value</from>
-      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -781,10 +764,45 @@
       <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Insert / update</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 2</from>
+      <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Delete</from>
+      <to>Sort rows 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 4</from>
+      <to>Table output 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge rows (diff) 2</from>
+      <to>Delete</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert / update</from>
+      <to>Sort rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert / update</from>
+      <to>Merge rows (diff) 2</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>Generate random value</name>
-    <type>RandomValue</type>
+    <name>Delete</name>
+    <type>Delete</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -793,12 +811,60 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>ID</name>
-        <type>random uuid</type>
-      </field>
-    </fields>
+    <connection>ms sql server</connection>
+    <commit>10000</commit>
+    <lookup>
+      <schema>dbo</schema>
+      <table>ricercadocenti</table>
+      <key>
+        <name>Fascia</name>
+        <field>Fascia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Cognome_e_Nome</name>
+        <field>Cognome_e_Nome</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Genere</name>
+        <field>Genere</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Facolta</name>
+        <field>Facolta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.S.D.</name>
+        <field>S.S.D.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.C.</name>
+        <field>S.C.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Struttura_di_afferenza</name>
+        <field>Struttura_di_afferenza</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <field>Servizio_prestato_in_altro_ateneo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -808,8 +874,128 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>176</yloc>
+      <xloc>1232</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ms sql server</connection>
+    <commit>10000</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>dbo</schema>
+      <table>ricercadocenti</table>
+      <key>
+        <name>Fascia</name>
+        <field>Fascia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Cognome_e_Nome</name>
+        <field>Cognome_e_Nome</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Genere</name>
+        <field>Genere</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Facolta</name>
+        <field>Facolta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.S.D.</name>
+        <field>S.S.D.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>S.C.</name>
+        <field>S.C.</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Struttura_di_afferenza</name>
+        <field>Struttura_di_afferenza</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <field>Servizio_prestato_in_altro_ateneo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>Fascia</name>
+        <rename>Fascia</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Cognome_e_Nome</name>
+        <rename>Cognome_e_Nome</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Genere</name>
+        <rename>Genere</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Facolta</name>
+        <rename>Facolta</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>S.S.D.</name>
+        <rename>S.S.D.</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>S.C.</name>
+        <rename>S.C.</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Struttura_di_afferenza</name>
+        <rename>Struttura_di_afferenza</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <rename>Servizio_prestato_in_altro_ateneo</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -826,26 +1012,26 @@
     </partitioning>
     <keys>
       <key>Fascia</key>
-      <key>Cognome e Nome</key>
+      <key>Cognome_e_Nome</key>
       <key>Genere</key>
-      <key>Facoltà</key>
+      <key>Facolta</key>
       <key>S.S.D.</key>
       <key>S.C.</key>
-      <key>Struttura di afferenza</key>
-      <key>Servizio prestato in altro ateneo</key>
+      <key>Struttura_di_afferenza</key>
+      <key>Servizio_prestato_in_altro_ateneo</key>
     </keys>
     <values>
       <value>Fascia</value>
-      <value>Cognome e Nome</value>
+      <value>Cognome_e_Nome</value>
       <value>Genere</value>
-      <value>Facoltà</value>
+      <value>Facolta</value>
       <value>S.S.D.</value>
       <value>S.C.</value>
-      <value>Struttura di afferenza</value>
-      <value>Servizio prestato in altro ateneo</value>
+      <value>Struttura_di_afferenza</value>
+      <value>Servizio_prestato_in_altro_ateneo</value>
     </values>
-    <flag_field>Cognome e Nome</flag_field>
-    <reference>Unique rows 2</reference>
+    <flag_field>isChanged</flag_field>
+    <reference>Select values</reference>
     <compare>Unique rows 3</compare>
     <compare>
     </compare>
@@ -858,8 +1044,58 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>176</yloc>
+      <xloc>576</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge rows (diff) 2</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <keys>
+      <key>Fascia</key>
+      <key>Cognome_e_Nome</key>
+      <key>Genere</key>
+      <key>Facolta</key>
+      <key>S.S.D.</key>
+      <key>S.C.</key>
+      <key>Struttura_di_afferenza</key>
+      <key>Servizio_prestato_in_altro_ateneo</key>
+    </keys>
+    <values>
+      <value>Fascia</value>
+      <value>Cognome_e_Nome</value>
+      <value>Genere</value>
+      <value>Facolta</value>
+      <value>S.S.D.</value>
+      <value>S.C.</value>
+      <value>Struttura_di_afferenza</value>
+      <value>Servizio_prestato_in_altro_ateneo</value>
+    </values>
+    <flag_field>isChanged</flag_field>
+    <reference>Insert / update</reference>
+    <compare>Insert / update</compare>
+    <compare>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1035,6 +1271,170 @@
     </GUI>
   </step>
   <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>Fascia</name>
+        <rename>Fascia</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Cognome e Nome</name>
+        <rename>Cognome_e_Nome</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Genere</name>
+        <rename>Genere</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Facoltà</name>
+        <rename>Facolta</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>S.S.D.</name>
+        <rename>S.S.D.</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>S.C.</name>
+        <rename>S.C.</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Struttura di afferenza</name>
+        <rename>Struttura_di_afferenza</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Servizio prestato in altro ateneo</name>
+        <rename>Servizio_prestato_in_altro_ateneo</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Sort rows</name>
     <type>SortRows</type>
     <description/>
@@ -1062,7 +1462,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1078,7 +1478,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1102,7 +1502,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1110,7 +1510,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1127,8 +1527,140 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>176</yloc>
+      <xloc>720</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1328</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 4</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>Fascia</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Cognome_e_Nome</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Genere</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Facolta</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>S.S.D.</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>S.C.</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Struttura_di_afferenza</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1408</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1143,17 +1675,17 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mysql pentaho</connection>
+    <connection>ms sql server</connection>
     <sql>SELECT
-  Fascia
-, `Cognome e Nome`
+Fascia
+, "Cognome_e_Nome"
 , Genere
-, Facoltà
-, `S.S.D.`
-, `S.C.`
-, `Struttura di afferenza`
-, `Servizio prestato in altro ateneo`
-FROM pentaho.ricercadocenti
+, Facolta
+, "S.S.D."
+, "S.C."
+, "Struttura_di_afferenza"
+, "Servizio_prestato_in_altro_ateneo"
+FROM dbo.ricercadocenti
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -1166,7 +1698,7 @@ FROM pentaho.ricercadocenti
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>Fascia</name>
-        <length>63</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>Fascia</comments>
@@ -1182,17 +1714,17 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Cognome e Nome</name>
-        <length>63</length>
+        <name>Cognome_e_Nome</name>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Cognome e Nome</comments>
+        <comments>Cognome_e_Nome</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1205,14 +1737,14 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>Genere</name>
-        <length>63</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>Genere</comments>
@@ -1228,17 +1760,17 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Facoltà</name>
-        <length>63</length>
+        <name>Facolta</name>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Facoltà</comments>
+        <comments>Facolta</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1251,14 +1783,14 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>S.S.D.</name>
-        <length>63</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>S.S.D.</comments>
@@ -1274,14 +1806,14 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>S.C.</name>
-        <length>63</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>S.C.</comments>
@@ -1297,17 +1829,17 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Struttura di afferenza</name>
-        <length>63</length>
+        <name>Struttura_di_afferenza</name>
+        <length>100</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Struttura di afferenza</comments>
+        <comments>Struttura_di_afferenza</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1320,17 +1852,17 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Servizio prestato in altro ateneo</name>
-        <length>63</length>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Servizio prestato in altro ateneo</comments>
+        <comments>Servizio_prestato_in_altro_ateneo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1343,7 +1875,7 @@ FROM pentaho.ricercadocenti
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>it_IT</date_format_locale>
-        <date_format_timezone>Europe/Berlin</date_format_timezone>
+        <date_format_timezone>Europe/Rome</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -1372,11 +1904,11 @@ FROM pentaho.ricercadocenti
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mysql pentaho</connection>
-    <schema>pentaho</schema>
+    <connection>ms sql server</connection>
+    <schema>dbo</schema>
     <table>ricercadocenti</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>
@@ -1387,24 +1919,24 @@ FROM pentaho.ricercadocenti
     <tablename_in_field>N</tablename_in_field>
     <tablename_field/>
     <tablename_in_table>Y</tablename_in_table>
-    <return_keys>Y</return_keys>
-    <return_field>ID</return_field>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
         <column_name>Fascia</column_name>
         <stream_name>Fascia</stream_name>
       </field>
       <field>
-        <column_name>Cognome e Nome</column_name>
-        <stream_name>Cognome e Nome</stream_name>
+        <column_name>Cognome_e_Nome</column_name>
+        <stream_name>Cognome_e_Nome</stream_name>
       </field>
       <field>
         <column_name>Genere</column_name>
         <stream_name>Genere</stream_name>
       </field>
       <field>
-        <column_name>Facoltà</column_name>
-        <stream_name>Facoltà</stream_name>
+        <column_name>Facolta</column_name>
+        <stream_name>Facolta</stream_name>
       </field>
       <field>
         <column_name>S.S.D.</column_name>
@@ -1415,12 +1947,12 @@ FROM pentaho.ricercadocenti
         <stream_name>S.C.</stream_name>
       </field>
       <field>
-        <column_name>Struttura di afferenza</column_name>
-        <stream_name>Struttura di afferenza</stream_name>
+        <column_name>Struttura_di_afferenza</column_name>
+        <stream_name>Struttura_di_afferenza</stream_name>
       </field>
       <field>
-        <column_name>Servizio prestato in altro ateneo</column_name>
-        <stream_name>Servizio prestato in altro ateneo</stream_name>
+        <column_name>Servizio_prestato_in_altro_ateneo</column_name>
+        <stream_name>Servizio_prestato_in_altro_ateneo</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1432,8 +1964,84 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>176</yloc>
+      <xloc>1472</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ms sql server</connection>
+    <schema>dbo</schema>
+    <table>ricercadocenti</table>
+    <commit>10000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>Fascia</column_name>
+        <stream_name>Fascia</stream_name>
+      </field>
+      <field>
+        <column_name>Cognome_e_Nome</column_name>
+        <stream_name>Cognome_e_Nome</stream_name>
+      </field>
+      <field>
+        <column_name>Genere</column_name>
+        <stream_name>Genere</stream_name>
+      </field>
+      <field>
+        <column_name>Facolta</column_name>
+        <stream_name>Facolta</stream_name>
+      </field>
+      <field>
+        <column_name>S.S.D.</column_name>
+        <stream_name>S.S.D.</stream_name>
+      </field>
+      <field>
+        <column_name>S.C.</column_name>
+        <stream_name>S.C.</stream_name>
+      </field>
+      <field>
+        <column_name>Struttura_di_afferenza</column_name>
+        <stream_name>Struttura_di_afferenza</stream_name>
+      </field>
+      <field>
+        <column_name>Servizio_prestato_in_altro_ateneo</column_name>
+        <stream_name>Servizio_prestato_in_altro_ateneo</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1504</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1458,7 +2066,7 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1466,7 +2074,7 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1478,11 +2086,11 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1495,8 +2103,8 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>176</yloc>
+      <xloc>912</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1584,7 +2192,7 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1592,7 +2200,7 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -1604,11 +2212,11 @@ FROM pentaho.ricercadocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1621,7 +2229,7 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>432</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1752,7 +2360,7 @@ FROM pentaho.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Cognome e Nome</name>
+        <name>Cognome_e_Nome</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1768,7 +2376,7 @@ FROM pentaho.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Facoltà</name>
+        <name>Facolta</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1792,7 +2400,7 @@ FROM pentaho.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Struttura di afferenza</name>
+        <name>Struttura_di_afferenza</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1800,7 +2408,7 @@ FROM pentaho.ricercadocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>Servizio prestato in altro ateneo</name>
+        <name>Servizio_prestato_in_altro_ateneo</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1817,12 +2425,24 @@ FROM pentaho.ricercadocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>192</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
+    <error>
+      <source_step>Insert / update</source_step>
+      <target_step>Merge rows (diff) 2</target_step>
+      <is_enabled>N</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>

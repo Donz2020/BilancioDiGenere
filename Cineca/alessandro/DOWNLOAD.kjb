@@ -18,12 +18,12 @@
     </parameter>
     <parameter>
       <name>HTM_TO_XLSX_SCRIPT</name>
-      <default_value>C:\Users\dony9\htm_to_xlsx.py</default_value>
+      <default_value>C:\Users\ale11\htm_to_xlsx.py</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>PATH</name>
-      <default_value>C:\Users\dony9\</default_value>
+      <default_value>C:\Users\ale11\</default_value>
       <description/>
     </parameter>
     <parameter>
@@ -579,13 +579,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>read_excel</name>
+      <name>cineca_export_db</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/read_excel_to_db.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/cineca_export_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -618,16 +618,68 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Interrompi job</name>
+      <name>cineca_export_db_duplicate</name>
       <description/>
-      <type>ABORT</type>
+      <type>TRANS</type>
       <attributes/>
-      <message/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}/cineca_export_db.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>688</xloc>
-      <yloc>240</yloc>
+      <yloc>336</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Successo 2</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1040</xloc>
+      <yloc>336</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Aspetta</name>
+      <description/>
+      <type>DELAY</type>
+      <attributes/>
+      <maximumTimeout>2</maximumTimeout>
+      <scaletime>0</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>208</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -651,7 +703,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>read_excel</from>
+      <from>cineca_export_db</from>
       <to>Successo</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -661,7 +713,7 @@
     </hop>
     <hop>
       <from>python</from>
-      <to>read_excel</to>
+      <to>cineca_export_db</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -669,12 +721,30 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>read_excel</from>
-      <to>Interrompi job</to>
+      <from>cineca_export_db_duplicate</from>
+      <to>Successo 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>cineca_export_db</from>
+      <to>Aspetta</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Aspetta</from>
+      <to>cineca_export_db_duplicate</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

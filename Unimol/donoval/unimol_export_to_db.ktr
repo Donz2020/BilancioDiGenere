@@ -2229,7 +2229,7 @@ FROM dbo.unimolDocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2751,7 +2751,7 @@ FROM dbo.unimolDocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>240</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>

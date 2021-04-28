@@ -815,7 +815,7 @@
     <commit>10000</commit>
     <lookup>
       <schema>dbo</schema>
-      <table>ricercadocenti</table>
+      <table>cinecaDocenti</table>
       <key>
         <name>Fascia</name>
         <field>Fascia</field>
@@ -895,7 +895,7 @@
     <update_bypassed>N</update_bypassed>
     <lookup>
       <schema>dbo</schema>
-      <table>ricercadocenti</table>
+      <table>cinecaDocenti</table>
       <key>
         <name>Fascia</name>
         <field>Fascia</field>
@@ -1677,15 +1677,15 @@
     </partitioning>
     <connection>ms sql server</connection>
     <sql>SELECT
-Fascia
-, "Cognome_e_Nome"
+  Fascia
+, Cognome_e_Nome
 , Genere
 , Facolta
 , "S.S.D."
 , "S.C."
-, "Struttura_di_afferenza"
-, "Servizio_prestato_in_altro_ateneo"
-FROM dbo.ricercadocenti
+, Struttura_di_afferenza
+, Servizio_prestato_in_altro_ateneo
+FROM dbo.cinecaDocenti
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -1906,7 +1906,7 @@ FROM dbo.ricercadocenti
     </partitioning>
     <connection>ms sql server</connection>
     <schema>dbo</schema>
-    <table>ricercadocenti</table>
+    <table>cinecaDocenti</table>
     <commit>10000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1982,7 +1982,7 @@ FROM dbo.ricercadocenti
     </partitioning>
     <connection>ms sql server</connection>
     <schema>dbo</schema>
-    <table>ricercadocenti</table>
+    <table>cinecaDocenti</table>
     <commit>10000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>

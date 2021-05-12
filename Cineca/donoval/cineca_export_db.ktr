@@ -669,7 +669,7 @@
     <type>MSSQL</type>
     <access>Native</access>
     <database>pentaho</database>
-    <port>1433</port>
+    <port>5100</port>
     <username>sa</username>
     <password>Encrypted 2bed1c0bb05c99d88ae1ea975d096ae8b</password>
     <servername/>
@@ -694,7 +694,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5100</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -841,14 +841,14 @@
         <name2/>
       </key>
       <key>
-        <name>S.S.D.</name>
-        <field>S.S.D.</field>
+        <name>SSD</name>
+        <field>SSD</field>
         <condition>=</condition>
         <name2/>
       </key>
       <key>
-        <name>S.C.</name>
-        <field>S.C.</field>
+        <name>SC</name>
+        <field>SC</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -921,14 +921,14 @@
         <name2/>
       </key>
       <key>
-        <name>S.S.D.</name>
-        <field>S.S.D.</field>
+        <name>SSD</name>
+        <field>SSD</field>
         <condition>=</condition>
         <name2/>
       </key>
       <key>
-        <name>S.C.</name>
-        <field>S.C.</field>
+        <name>SC</name>
+        <field>SC</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -965,13 +965,13 @@
         <update>Y</update>
       </value>
       <value>
-        <name>S.S.D.</name>
-        <rename>S.S.D.</rename>
+        <name>SSD</name>
+        <rename>SSD</rename>
         <update>Y</update>
       </value>
       <value>
-        <name>S.C.</name>
-        <rename>S.C.</rename>
+        <name>SC</name>
+        <rename>SC</rename>
         <update>Y</update>
       </value>
       <value>
@@ -1015,8 +1015,8 @@
       <key>Cognome_e_Nome</key>
       <key>Genere</key>
       <key>Facolta</key>
-      <key>S.S.D.</key>
-      <key>S.C.</key>
+      <key>SSD</key>
+      <key>SC</key>
       <key>Struttura_di_afferenza</key>
       <key>Servizio_prestato_in_altro_ateneo</key>
     </keys>
@@ -1025,8 +1025,8 @@
       <value>Cognome_e_Nome</value>
       <value>Genere</value>
       <value>Facolta</value>
-      <value>S.S.D.</value>
-      <value>S.C.</value>
+      <value>SSD</value>
+      <value>SC</value>
       <value>Struttura_di_afferenza</value>
       <value>Servizio_prestato_in_altro_ateneo</value>
     </values>
@@ -1065,8 +1065,8 @@
       <key>Cognome_e_Nome</key>
       <key>Genere</key>
       <key>Facolta</key>
-      <key>S.S.D.</key>
-      <key>S.C.</key>
+      <key>SSD</key>
+      <key>SC</key>
       <key>Struttura_di_afferenza</key>
       <key>Servizio_prestato_in_altro_ateneo</key>
     </keys>
@@ -1075,8 +1075,8 @@
       <value>Cognome_e_Nome</value>
       <value>Genere</value>
       <value>Facolta</value>
-      <value>S.S.D.</value>
-      <value>S.C.</value>
+      <value>SSD</value>
+      <value>SC</value>
       <value>Struttura_di_afferenza</value>
       <value>Servizio_prestato_in_altro_ateneo</value>
     </values>
@@ -1353,7 +1353,7 @@
       </meta>
       <meta>
         <name>S.S.D.</name>
-        <rename>S.S.D.</rename>
+        <rename>SSD</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1370,7 +1370,7 @@
       </meta>
       <meta>
         <name>S.C.</name>
-        <rename>S.C.</rename>
+        <rename>SC</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1486,7 +1486,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1494,7 +1494,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.C.</name>
+        <name>SC</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1551,6 +1551,70 @@
     <compress_variable/>
     <unique_rows>N</unique_rows>
     <fields>
+      <field>
+        <name>Fascia</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Cognome_e_Nome</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Genere</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Facolta</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>SSD</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>SC</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Struttura_di_afferenza</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>Servizio_prestato_in_altro_ateneo</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1618,7 +1682,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1626,7 +1690,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.C.</name>
+        <name>SC</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1681,10 +1745,11 @@
 , Cognome_e_Nome
 , Genere
 , Facolta
-, "S.S.D."
-, "S.C."
+, SSD
+, SC
 , Struttura_di_afferenza
 , Servizio_prestato_in_altro_ateneo
+
 FROM dbo.cinecaDocenti
 </sql>
     <limit>0</limit>
@@ -1789,11 +1854,11 @@ FROM dbo.cinecaDocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>S.S.D.</comments>
+        <comments>SSD</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1812,11 +1877,11 @@ FROM dbo.cinecaDocenti
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>S.C.</name>
+        <name>SC</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>S.C.</comments>
+        <comments>SC</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1939,12 +2004,12 @@ FROM dbo.cinecaDocenti
         <stream_name>Facolta</stream_name>
       </field>
       <field>
-        <column_name>S.S.D.</column_name>
-        <stream_name>S.S.D.</stream_name>
+        <column_name>SSD</column_name>
+        <stream_name>SSD</stream_name>
       </field>
       <field>
-        <column_name>S.C.</column_name>
-        <stream_name>S.C.</stream_name>
+        <column_name>SC</column_name>
+        <stream_name>SC</stream_name>
       </field>
       <field>
         <column_name>Struttura_di_afferenza</column_name>
@@ -2015,12 +2080,12 @@ FROM dbo.cinecaDocenti
         <stream_name>Facolta</stream_name>
       </field>
       <field>
-        <column_name>S.S.D.</column_name>
-        <stream_name>S.S.D.</stream_name>
+        <column_name>SSD</column_name>
+        <stream_name>SSD</stream_name>
       </field>
       <field>
-        <column_name>S.C.</column_name>
-        <stream_name>S.C.</stream_name>
+        <column_name>SC</column_name>
+        <stream_name>SC</stream_name>
       </field>
       <field>
         <column_name>Struttura_di_afferenza</column_name>
@@ -2078,11 +2143,11 @@ FROM dbo.cinecaDocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>S.C.</name>
+        <name>SC</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -2204,11 +2269,11 @@ FROM dbo.cinecaDocenti
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
-        <name>S.C.</name>
+        <name>SC</name>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
@@ -2384,7 +2449,7 @@ FROM dbo.cinecaDocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.S.D.</name>
+        <name>SSD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -2392,7 +2457,7 @@ FROM dbo.cinecaDocenti
         <presorted>N</presorted>
       </field>
       <field>
-        <name>S.C.</name>
+        <name>SC</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>

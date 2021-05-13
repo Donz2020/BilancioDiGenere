@@ -1,6 +1,9 @@
 import pandas as pd
+import sys
 
-default_url = "https://service.unimol.it/asn/view.php?tornata=&fascia=&quadrimestre=&settore=&cognome=&nome=&ateneo=camerino&afferenza=&match=contiene&per_page=20&submit=&page=";
+default_url = 'https://service.unimol.it/asn/view.php?tornata=&fascia=&quadrimestre=&settore=&cognome=&nome=&ateneo=camerino&afferenza=&match=contiene&per_page=20&submit=&page='
+filePath = sys.argv[1]
+fileName = sys.argv[2]
 
 last_table = pd.DataFrame(
     {
@@ -17,7 +20,7 @@ last_table = pd.DataFrame(
         "SSD": [],
         "Afferenza": [],
         },
-    );
+    )
 
 for i in range(1,14):
     url = default_url + str(i)
@@ -27,5 +30,5 @@ for i in range(1,14):
     else:
         last_table = last_table.append(table, ignore_index=True, verify_integrity=False, sort=False)
 
-#print(last_table)
-last_table.to_excel(".\data.xlsx")
+
+last_table.to_excel(f'{filePath}/{fileName}')

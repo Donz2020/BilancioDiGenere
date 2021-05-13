@@ -12,40 +12,85 @@
   <modified_date>2021/04/09 09:43:31.649</modified_date>
   <parameters>
     <parameter>
+      <name>CINECA_EXPORT_NAME</name>
+      <default_value>cineca_export.xlsx</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>DB_HOST</name>
+      <default_value>naschristian.ddns.net</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>DB_NAME</name>
+      <default_value>pentaho</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>DB_PASS</name>
+      <default_value>Iosonoleggenda1</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>DB_PORT</name>
+      <default_value>5100</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>DB_USER</name>
+      <default_value>sa</default_value>
+      <description/>
+    </parameter>
+    <parameter>
       <name>DOWNLOADNAME</name>
-      <default_value>temp.htm</default_value>
+      <default_value>cineca.htm</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>HTM_TO_XLSX_SCRIPT</name>
-      <default_value>C:\Users\dony9\Desktop\Project_group\BilancioDiGenere\Cineca\htm_to_xlsx.py</default_value>
+      <default_value>${ROOT}/Cineca/htm_to_xlsx.py</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>PATH</name>
-      <default_value>C:\Users\dony9\</default_value>
+      <default_value>${ROOT}/Files</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>PYTHON</name>
-      <default_value>C:\Program Files\Python39</default_value>
+      <default_value>C:/Program Files/Python39</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>ROOT</name>
+      <default_value>Z:/Documents/codiceSorgente/unicam/BilancioDiGenere_personal</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>UNIMOL-CINECA-MERGE-SCRIPT</name>
-      <default_value>C:\Users\dony9\Desktop\Project_group\BilancioDiGenere\Unimol_Cineca_merge\mergeUnimolCineca.py</default_value>
+      <default_value>${ROOT}/Unimol_Cineca_merge/mergeUnimolCineca.py</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>UNIMOL_EXPORT_NAME</name>
+      <default_value>unimol_export.xlsx</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>scrape_html_tables_script</name>
+      <default_value>${ROOT}/Unimol/scrape_html_tables_unimol.py</default_value>
       <description/>
     </parameter>
   </parameters>
   <connection>
     <name>ms sql server pentaho</name>
-    <server>naschristian.ddns.net</server>
+    <server>${DB_HOST}</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>pentaho</database>
-    <port>5100</port>
-    <username>sa</username>
-    <password>Encrypted 2bed1c0bb05c99d88ae1ea975d096ae8b</password>
+    <database>${DB_NAME}</database>
+    <port>${DB_PORT}</port>
+    <username>${DB_USER}</username>
+    <password>${DB_PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -68,7 +113,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5100</attribute>
+        <attribute>${DB_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -577,7 +622,7 @@
       <type>HTTP</type>
       <attributes/>
       <url>https://cercauniversita.cineca.it/php5/docenti/vis_docenti.php?universita=06&amp;facolta=00&amp;settore=0000&amp;area=0000&amp;qualifica=**&amp;situazione_al=0&amp;radiogroup=P&amp;genere=A&amp;servizio=N&amp;cognome=&amp;nome=&amp;conferma=2&amp;facolta_st=00&amp;settorec=0000&amp;macro=0000&amp;testuale=1&amp;nomefile=%24nomefile&amp;pagina=%5CA</url>
-      <targetfilename>${PATH}${DOWNLOADNAME}</targetfilename>
+      <targetfilename>${PATH}\${DOWNLOADNAME}</targetfilename>
       <file_appended>N</file_appended>
       <date_time_added>N</date_time_added>
       <targetfilename_extension/>
@@ -597,7 +642,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
+      <xloc>432</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -606,7 +651,7 @@
       <description/>
       <type>SHELL</type>
       <attributes/>
-      <filename>C:\Users\Sviluppo-pc\Desktop\test.bat</filename>
+      <filename/>
       <work_directory>${PYTHON}</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -617,12 +662,12 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>python ${HTM_TO_XLSX_SCRIPT}</script>
+      <script>python ${HTM_TO_XLSX_SCRIPT} ${PATH} ${DOWNLOADNAME} ${CINECA_EXPORT_NAME}</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
+      <xloc>768</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -634,8 +679,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1264</xloc>
-      <yloc>96</yloc>
+      <xloc>48</xloc>
+      <yloc>400</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -645,7 +690,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Cineca/cineca_export_db.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/../Cineca/cineca_export_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -673,8 +718,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
-      <yloc>96</yloc>
+      <xloc>768</xloc>
+      <yloc>256</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -693,13 +738,13 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>python ${UNIMOL-CINECA-MERGE-SCRIPT} naschristian.ddns.net:5100 sa:Iosonoleggenda1 pentaho</script>
+      <script>python ${UNIMOL-CINECA-MERGE-SCRIPT} ${DB_HOST}:${DB_PORT} ${DB_USER}:${DB_PASS} ${DB_NAME}</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>96</yloc>
+      <xloc>288</xloc>
+      <yloc>400</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -720,7 +765,7 @@ TRUNCATE TABLE unimol_cineca_merge;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>160</xloc>
+      <xloc>192</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -731,7 +776,7 @@ TRUNCATE TABLE unimol_cineca_merge;
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Unimol/unimol_export_to_db.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/../Unimol/unimol_export_to_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -759,8 +804,33 @@ TRUNCATE TABLE unimol_cineca_merge;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>96</yloc>
+      <xloc>544</xloc>
+      <yloc>400</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>python_unimol_table_html_to_xlsx</name>
+      <description/>
+      <type>SHELL</type>
+      <attributes/>
+      <filename/>
+      <work_directory>${PYTHON}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>python ${scrape_html_tables_script} ${PATH} ${UNIMOL_EXPORT_NAME}</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>768</xloc>
+      <yloc>400</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -811,8 +881,8 @@ TRUNCATE TABLE unimol_cineca_merge;
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>cineca_export_db</from>
-      <to>unimol_export_db</to>
+      <from>unimol_export_db</from>
+      <to>python_unimol_cineca_merge</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -820,8 +890,17 @@ TRUNCATE TABLE unimol_cineca_merge;
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>unimol_export_db</from>
-      <to>python_unimol_cineca_merge</to>
+      <from>cineca_export_db</from>
+      <to>python_unimol_table_html_to_xlsx</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>python_unimol_table_html_to_xlsx</from>
+      <to>unimol_export_db</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

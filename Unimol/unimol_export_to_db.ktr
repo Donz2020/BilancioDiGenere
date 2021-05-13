@@ -9,16 +9,6 @@
     <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
-      <parameter>
-        <name>EXPORT_NAME</name>
-        <default_value>data.xlsx</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>PATH</name>
-        <default_value>C:\Users\dony9\</default_value>
-        <description/>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -448,13 +438,13 @@
   </notepads>
   <connection>
     <name>ms sql server</name>
-    <server>naschristian.ddns.net</server>
+    <server>${DB_HOST}</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>pentaho</database>
-    <port>5100</port>
-    <username>sa</username>
-    <password>Encrypted 2bed1c0bb05c99d88ae1ea975d096ae8b</password>
+    <database>${DB_NAME}</database>
+    <port>${DB_PORT}</port>
+    <username>${DB_USER}</username>
+    <password>${DB_PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -477,7 +467,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5100</attribute>
+        <attribute>${DB_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -523,11 +513,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 2</from>
-      <to>Table output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Table input</from>
       <to>source 2</to>
       <enabled>Y</enabled>
@@ -555,6 +540,16 @@
     <hop>
       <from>Sort rows</from>
       <to>Insert / update</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 2</from>
+      <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -717,7 +712,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>976</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -807,7 +802,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${PATH}${EXPORT_NAME}</name>
+      <name>${PATH}/${UNIMOL_EXPORT_NAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1393,7 +1388,7 @@
     <free_memory/>
     <compress>N</compress>
     <compress_variable/>
-    <unique_rows>N</unique_rows>
+    <unique_rows>Y</unique_rows>
     <fields>
       <field>
         <name>Cognome</name>
@@ -1501,7 +1496,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1312</xloc>
+      <xloc>1152</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1918,7 +1913,86 @@ FROM dbo.unimolDocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1456</xloc>
+      <xloc>1408</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>Cognome</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Nome</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Tornata</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Settore</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Fascia</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Q</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Inizio</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Fine</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Ateneo</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Ruolo</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>SSD</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>Afferenza</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1280</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>

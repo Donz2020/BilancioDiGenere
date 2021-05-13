@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>DOWNLOAD</name>
   <description/>
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>/public/Project-group/donoval</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2013/06/28 22:06:14.777</created_date>
   <modified_user>donoval</modified_user>
@@ -17,12 +18,12 @@
     </parameter>
     <parameter>
       <name>HTM_TO_XLSX_SCRIPT</name>
-      <default_value>C:\Users\Sviluppo-pc\htm_to_xlsx.py</default_value>
+      <default_value>C:\Users\dony9\htm_to_xlsx.py</default_value>
       <description/>
     </parameter>
     <parameter>
       <name>PATH</name>
-      <default_value>C:\Users\Sviluppo-pc\</default_value>
+      <default_value>C:\Users\dony9\</default_value>
       <description/>
     </parameter>
     <parameter>
@@ -30,8 +31,81 @@
       <default_value>C:\Program Files\Python39</default_value>
       <description/>
     </parameter>
+    <parameter>
+      <name>UNIMOL-CINECA-MERGE-SCRIPT</name>
+      <default_value>C:\Users\dony9\mergeUnimolCineca.py</default_value>
+      <description/>
+    </parameter>
   </parameters>
+  <connection>
+    <name>ms sql server pentaho</name>
+    <server>naschristian.ddns.net</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>pentaho</database>
+    <port>5100</port>
+    <username>sa</username>
+    <password>Encrypted 2bed1c0bb05c99d88ae1ea975d096ae8b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5100</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <slaveservers>
+    <slaveserver>
+      <name>ati-dev-ana01</name>
+      <hostname>ati-dev-ana01</hostname>
+      <port>9081</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>njain</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
     <slaveserver>
       <name>ATI-PRD-ANA03</name>
       <hostname>ATI-PRD-ANA03</hostname>
@@ -56,6 +130,19 @@
       <proxy_port/>
       <non_proxy_hosts/>
       <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>cptlx007</name>
+      <hostname>cptlx007.cipal.be</hostname>
+      <port>10001</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
       <sslMode>N</sslMode>
     </slaveserver>
     <slaveserver>
@@ -85,12 +172,38 @@
       <sslMode>N</sslMode>
     </slaveserver>
     <slaveserver>
+      <name>local</name>
+      <hostname>127.0.0.1</hostname>
+      <port>9080</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
       <name>master</name>
       <hostname>oathena.cipal.be</hostname>
       <port>10001</port>
       <webAppName/>
       <username>cluster</username>
       <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>remote</name>
+      <hostname>192.168.1.16</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di/kettle</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
       <proxy_hostname/>
       <proxy_port/>
       <non_proxy_hosts/>
@@ -160,58 +273,6 @@
       <proxy_port/>
       <non_proxy_hosts/>
       <master>N</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>ati-dev-ana01</name>
-      <hostname>ati-dev-ana01</hostname>
-      <port>9081</port>
-      <webAppName>pentaho-di</webAppName>
-      <username>njain</username>
-      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>cptlx007</name>
-      <hostname>cptlx007.cipal.be</hostname>
-      <port>10001</port>
-      <webAppName/>
-      <username>cluster</username>
-      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>local</name>
-      <hostname>127.0.0.1</hostname>
-      <port>9080</port>
-      <webAppName/>
-      <username>cluster</username>
-      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
-      <sslMode>N</sslMode>
-    </slaveserver>
-    <slaveserver>
-      <name>remote</name>
-      <hostname>192.168.1.16</hostname>
-      <port>9080</port>
-      <webAppName>pentaho-di/kettle</webAppName>
-      <username>admin</username>
-      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
-      <proxy_hostname/>
-      <proxy_port/>
-      <non_proxy_hosts/>
-      <master>Y</master>
       <sslMode>N</sslMode>
     </slaveserver>
   </slaveservers>
@@ -511,7 +572,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>HTTP</name>
+      <name>download_cineca_htm</name>
       <description/>
       <type>HTTP</type>
       <attributes/>
@@ -536,12 +597,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>320</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>python</name>
+      <name>python_cineca_htm_to_xlsx</name>
       <description/>
       <type>SHELL</type>
       <attributes/>
@@ -561,7 +622,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>496</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -573,20 +634,19 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
+      <xloc>1264</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Read excel</name>
+      <name>cineca_export_db</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>rep_name</specification_method>
+      <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
-      <transname>Read_excel</transname>
-      <directory>${Internal.Entry.Current.Directory}</directory>
+      <filename>${Internal.Entry.Current.Directory}/cineca_export_db.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -613,15 +673,128 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>624</xloc>
+      <xloc>688</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>python_unimol_cineca_merge</name>
+      <description/>
+      <type>SHELL</type>
+      <attributes/>
+      <filename/>
+      <work_directory>${PYTHON}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>python ${UNIMOL-CINECA-MERGE-SCRIPT} naschristian.ddns.net:5100 sa:Iosonoleggenda1 pentaho</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1056</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>truncate_all_tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>TRUNCATE TABLE cinecaDocenti;
+TRUNCATE TABLE unimolDocenti;
+TRUNCATE TABLE unimol_cineca_merge;
+
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>ms sql server pentaho</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>160</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>unimol_export_db</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Unimol/unimol_export_to_db.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>848</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
+      <from>download_cineca_htm</from>
+      <to>python_cineca_htm_to_xlsx</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>python_cineca_htm_to_xlsx</from>
+      <to>cineca_export_db</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>python_unimol_cineca_merge</from>
+      <to>Successo</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>START</from>
-      <to>HTTP</to>
+      <to>truncate_all_tables</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -629,8 +802,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>HTTP</from>
-      <to>python</to>
+      <from>truncate_all_tables</from>
+      <to>download_cineca_htm</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -638,8 +811,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>python</from>
-      <to>Read excel</to>
+      <from>cineca_export_db</from>
+      <to>unimol_export_db</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -647,8 +820,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Read excel</from>
-      <to>Successo</to>
+      <from>unimol_export_db</from>
+      <to>python_unimol_cineca_merge</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

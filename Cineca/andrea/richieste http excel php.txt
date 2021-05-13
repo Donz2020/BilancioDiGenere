@@ -1,5 +1,0 @@
-
-con filtro ateneo camerino
-
-
-https://cercauniversita.cineca.it/php5/docenti/vis_docenti.php?universita=06&facolta=00&settore=0000&area=0000&qualifica=**&situazione_al=0&radiogroup=P&genere=A&servizio=N&cognome=&nome=&conferma=2&facolta_st=00&settorec=0000&macro=0000&testuale=1&nomefile=%24nomefile&pagina=%5CA

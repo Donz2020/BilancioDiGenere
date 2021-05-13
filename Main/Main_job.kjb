@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>DOWNLOAD</name>
+  <name>Main_job</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -572,7 +572,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>HTTP</name>
+      <name>download_cineca_htm</name>
       <description/>
       <type>HTTP</type>
       <attributes/>
@@ -597,12 +597,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>320</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>python htm to xlsx</name>
+      <name>python_cineca_htm_to_xlsx</name>
       <description/>
       <type>SHELL</type>
       <attributes/>
@@ -622,7 +622,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
+      <xloc>496</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -634,7 +634,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1648</xloc>
+      <xloc>1264</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -645,7 +645,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/cineca_export_db.ktr</filename>
+      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Cineca/cineca_export_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -678,49 +678,60 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Aspetta</name>
+      <name>python_unimol_cineca_merge</name>
       <description/>
-      <type>DELAY</type>
+      <type>SHELL</type>
       <attributes/>
-      <maximumTimeout>4</maximumTimeout>
-      <scaletime>0</scaletime>
+      <filename/>
+      <work_directory>${PYTHON}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>python ${UNIMOL-CINECA-MERGE-SCRIPT} naschristian.ddns.net:5100 sa:Iosonoleggenda1 pentaho</script>
+      <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
-      <yloc>208</yloc>
+      <xloc>1056</xloc>
+      <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Dummy</name>
+      <name>truncate_all_tables</name>
       <description/>
-      <type>SPECIAL</type>
+      <type>SQL</type>
       <attributes/>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
+      <sql>TRUNCATE TABLE cinecaDocenti;
+TRUNCATE TABLE unimolDocenti;
+TRUNCATE TABLE unimol_cineca_merge;
+
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>ms sql server pentaho</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>544</xloc>
-      <yloc>208</yloc>
+      <xloc>160</xloc>
+      <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>unimol_export_to_db</name>
+      <name>unimol_export_db</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Unimol/donoval/unimol_export_to_db.ktr</filename>
+      <filename>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere/Unimol/unimol_export_to_db.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -748,103 +759,15 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>96</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Aspetta 2</name>
-      <description/>
-      <type>DELAY</type>
-      <attributes/>
-      <maximumTimeout>4</maximumTimeout>
-      <scaletime>0</scaletime>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1168</xloc>
-      <yloc>208</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Dummy 2</name>
-      <description/>
-      <type>SPECIAL</type>
-      <attributes/>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>944</xloc>
-      <yloc>208</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>python unimol-cineca-merge tables</name>
-      <description/>
-      <type>SHELL</type>
-      <attributes/>
-      <filename/>
-      <work_directory>${PYTHON}</work_directory>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>python ${UNIMOL-CINECA-MERGE-SCRIPT} naschristian.ddns.net:5100 sa:Iosonoleggenda1 pentaho</script>
-      <loglevel>Basic</loglevel>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1472</xloc>
-      <yloc>96</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>truncate unimol_cineca_merge</name>
-      <description/>
-      <type>SQL</type>
-      <attributes/>
-      <sql>TRUNCATE TABLE unimol_cineca_merge;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>ms sql server pentaho</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1264</xloc>
+      <xloc>848</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>HTTP</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>HTTP</from>
-      <to>python htm to xlsx</to>
+      <from>download_cineca_htm</from>
+      <to>python_cineca_htm_to_xlsx</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -852,7 +775,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>python htm to xlsx</from>
+      <from>python_cineca_htm_to_xlsx</from>
       <to>cineca_export_db</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -861,70 +784,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>cineca_export_db</from>
-      <to>Aspetta</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Aspetta</from>
-      <to>Dummy</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Dummy</from>
-      <to>cineca_export_db</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>cineca_export_db</from>
-      <to>unimol_export_to_db</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>unimol_export_to_db</from>
-      <to>Aspetta 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Aspetta 2</from>
-      <to>Dummy 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Dummy 2</from>
-      <to>unimol_export_to_db</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>python unimol-cineca-merge tables</from>
+      <from>python_unimol_cineca_merge</from>
       <to>Successo</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -933,8 +793,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>unimol_export_to_db</from>
-      <to>truncate unimol_cineca_merge</to>
+      <from>START</from>
+      <to>truncate_all_tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>truncate_all_tables</from>
+      <to>download_cineca_htm</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -942,8 +811,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>truncate unimol_cineca_merge</from>
-      <to>python unimol-cineca-merge tables</to>
+      <from>cineca_export_db</from>
+      <to>unimol_export_db</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>unimol_export_db</from>
+      <to>python_unimol_cineca_merge</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

@@ -18,7 +18,7 @@
     </parameter>
     <parameter>
       <name>HTM_TO_XLSX_SCRIPT</name>
-      <default_value>C:\Users\dony9\htm_to_xlsx.py</default_value>
+      <default_value>C:\Users\dony9\Desktop\Project_group\BilancioDiGenere\Cineca\htm_to_xlsx.py</default_value>
       <description/>
     </parameter>
     <parameter>
@@ -33,7 +33,7 @@
     </parameter>
     <parameter>
       <name>UNIMOL-CINECA-MERGE-SCRIPT</name>
-      <default_value>C:\Users\dony9\mergeUnimolCineca.py</default_value>
+      <default_value>C:\Users\dony9\Desktop\Project_group\BilancioDiGenere\Unimol_Cineca_merge\mergeUnimolCineca.py</default_value>
       <description/>
     </parameter>
   </parameters>

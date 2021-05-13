@@ -63,7 +63,7 @@
     </parameter>
     <parameter>
       <name>ROOT</name>
-      <default_value>Z:/Documents/codiceSorgente/unicam/BilancioDiGenere_personal</default_value>
+      <default_value>C:/Users/dony9/Desktop/Project_group/BilancioDiGenere</default_value>
       <description/>
     </parameter>
     <parameter>

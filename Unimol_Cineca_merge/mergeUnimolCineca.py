@@ -45,9 +45,8 @@ for docente in docentiCineca:
     temp = db.session.query(unimolDocenti).filter_by(Cognome=x[0], Nome=x[1]).first()
     if temp is not None:
         merge = unimol_cineca_merge(Cognome_e_Nome=docente.Cognome_e_Nome, Genere=docente.Genere, Facolta=docente.Facolta, Tornata=temp.Tornata,Fascia=temp.Fascia, Q=temp.Q, Inizio=temp.Inizio, Fine=temp.Fine, Ateneo=temp.Ateneo, Ruolo=docente.Fascia, Afferenza=docente.Struttura_di_afferenza, Servizio_prestato_in_altro_ateneo=docente.Servizio_prestato_in_altro_ateneo, SSD=docente.SSD, Settore=docente.SC)
-        db.session.add(merge)
     else:
         merge = unimol_cineca_merge(Cognome_e_Nome=docente.Cognome_e_Nome, Genere=docente.Genere, Facolta=docente.Facolta, Ruolo=docente.Fascia, Afferenza=docente.Struttura_di_afferenza, Servizio_prestato_in_altro_ateneo=docente.Servizio_prestato_in_altro_ateneo, SSD=docente.SSD, Settore=docente.SC)
-        db.session.add(merge)
+    db.session.add(merge)
 
 db.session.commit()

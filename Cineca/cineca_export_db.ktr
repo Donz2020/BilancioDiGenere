@@ -1638,7 +1638,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
+      <xloc>1232</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1967,7 +1967,7 @@ FROM dbo.cinecaDocenti
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1472</xloc>
+      <xloc>1376</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>

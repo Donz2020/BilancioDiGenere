@@ -3,7 +3,7 @@
   (
    [Cognome_e_Nome] varchar(100) NOT NULL,
    [Genere] varchar(50) NOT NULL,
-   Tornata int,
+   Tornata varchar(20),
    Settore varchar(50),
    [Fascia] smallint,
    [Q] smallint,

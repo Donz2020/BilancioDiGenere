@@ -18,7 +18,7 @@
     </parameter>
     <parameter>
       <name>DB_HOST</name>
-      <default_value>192.168.1.61</default_value>
+      <default_value>naschristian.ddns.net</default_value>
       <description/>
     </parameter>
     <parameter>
@@ -33,7 +33,7 @@
     </parameter>
     <parameter>
       <name>DB_PORT</name>
-      <default_value>1433</default_value>
+      <default_value>5100</default_value>
       <description/>
     </parameter>
     <parameter>

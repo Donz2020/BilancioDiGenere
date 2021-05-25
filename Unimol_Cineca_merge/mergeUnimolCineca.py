@@ -25,7 +25,7 @@ class unimol_cineca_merge(db.Model):
     Cognome_e_Nome = db.Column(db.String(100))
     Genere= db.Column(db.String(50))
     Facolta= db.Column(db.String(50))
-    Tornata= db.Column(db.String(20))
+    Tornata= db.Column(db.Integer)
     Fascia= db.Column(db.Integer)
     Q= db.Column(db.Integer)
     SSD= db.Column(db.String(50))
